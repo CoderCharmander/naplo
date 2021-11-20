@@ -10,8 +10,8 @@
 ## Versions
 
 - [Latest Stable](https://github.com/filc/naplo/releases/latest): `3.1.1`
-- [Experiment 1]() (Tabs): `3.2.0-pre1`
-- [Experiment 2]() (Widgets): `3.2.0-pre2`
+- [Experiment 1]() (Tabs): `3.2.0-pre.1`
+- [Experiment 2]() (Widgets): `3.2.0-pre.2`
 
 ## Setup
 
