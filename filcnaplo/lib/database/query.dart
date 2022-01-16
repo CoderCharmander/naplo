@@ -111,4 +111,13 @@ class UserDatabaseQuery {
     List<Absence> absebces = (jsonDecode(absebcesJson) as List).map((e) => Absence.fromJson(e)).toList();
     return absebces;
   }
+
+  Future<List<String>> getHomeHiddenIds({required String userId}) async {
+    List<Map> userData = await db.query("users", where: "id = ?", whereArgs: [userId]);
+    if (userData.isEmpty) return [];
+    String? hiddenIdsJson = userData.elementAt(0)["home_hidden_ids"] as String?;
+    if (hiddenIdsJson == null) return [];
+    List<String> hiddenIds = (jsonDecode(hiddenIdsJson) as List).cast<String>().toList();
+    return hiddenIds;
+  }
 }

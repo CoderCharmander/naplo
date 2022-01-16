@@ -82,4 +82,9 @@ class UserDatabaseStore {
     String absencesJson = jsonEncode(absences.map((e) => e.json).toList());
     await db.update("user_data", {"absences": absencesJson}, where: "id = ?", whereArgs: [userId]);
   }
+
+  Future storeHomeHiddenIds(List<String> hiddenIds, {required String userId}) async {
+    String hiddenIdsJson = jsonEncode(hiddenIds);
+    await db.update("users", {"home_hidden_ids": hiddenIdsJson}, where: "id = ?", whereArgs: [userId]);
+  }
 }

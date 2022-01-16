@@ -53,8 +53,16 @@ Future<DatabaseStruct> createSettingsTable(Database db) async {
 }
 
 Future<DatabaseStruct> createUsersTable(Database db) async {
-  var usersDB = DatabaseStruct(
-      {"id": String, "name": String, "username": String, "password": String, "institute_code": String, "student": String, "role": int});
+  var usersDB = DatabaseStruct({
+    "id": String,
+    "name": String,
+    "username": String,
+    "password": String,
+    "institute_code": String,
+    "student": String,
+    "role": int,
+    "home_hidden_ids": String
+  });
 
   // Create table Users
   await db.execute("CREATE TABLE IF NOT EXISTS users ($usersDB)");
