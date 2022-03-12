@@ -1,3 +1,5 @@
+- Eddigi hiányzott órák százalékos kijelzése
+- Hiányzások tantárgy szerinti rendezése
 - Hiányzások jelzése az órarenben
 - Fordítás javítások
 - Mai határidős házifeladatok javítása

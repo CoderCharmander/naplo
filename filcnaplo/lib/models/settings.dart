@@ -47,6 +47,7 @@ class SettingsProvider extends ChangeNotifier {
   Config _config;
   String _xFilcId;
   bool _graphClassAvg;
+  bool _goodStudent;
 
   SettingsProvider({
     required String language,
@@ -68,6 +69,7 @@ class SettingsProvider extends ChangeNotifier {
     required Config config,
     required String xFilcId,
     required bool graphClassAvg,
+    required bool goodStudent,
   })  : _language = language,
         _startPage = startPage,
         _rounding = rounding,
@@ -86,7 +88,8 @@ class SettingsProvider extends ChangeNotifier {
         _updateChannel = updateChannel,
         _config = config,
         _xFilcId = xFilcId,
-        _graphClassAvg = graphClassAvg;
+        _graphClassAvg = graphClassAvg,
+        _goodStudent = goodStudent;
 
   factory SettingsProvider.fromMap(Map map) {
     return SettingsProvider(
@@ -115,6 +118,7 @@ class SettingsProvider extends ChangeNotifier {
       config: Config.fromJson(jsonDecode(map["config"] ?? "{}")),
       xFilcId: map["x_filc_id"],
       graphClassAvg: map["graph_class_avg"] == 1,
+      goodStudent: false,
     );
   }
 
@@ -173,6 +177,7 @@ class SettingsProvider extends ChangeNotifier {
       config: Config.fromJson({}),
       xFilcId: const Uuid().v4(),
       graphClassAvg: false,
+      goodStudent: false,
     );
   }
 
@@ -196,6 +201,7 @@ class SettingsProvider extends ChangeNotifier {
   Config get config => _config;
   String get xFilcId => _xFilcId;
   bool get graphClassAvg => _graphClassAvg;
+  bool get goodStudent => _goodStudent;
 
   Future<void> update(
     BuildContext context, {
@@ -219,6 +225,7 @@ class SettingsProvider extends ChangeNotifier {
     Config? config,
     String? xFilcId,
     bool? graphClassAvg,
+    bool? goodStudent,
   }) async {
     if (language != null && language != _language) _language = language;
     if (startPage != null && startPage != _startPage) _startPage = startPage;
@@ -241,6 +248,7 @@ class SettingsProvider extends ChangeNotifier {
     if (config != null && config != _config) _config = config;
     if (xFilcId != null && xFilcId != _xFilcId) _xFilcId = xFilcId;
     if (graphClassAvg != null && graphClassAvg != _graphClassAvg) _graphClassAvg = graphClassAvg;
+    if (goodStudent != null) _goodStudent = goodStudent;
 
     database ??= Provider.of<DatabaseProvider>(context, listen: false);
     await database.store.storeSettings(this);
