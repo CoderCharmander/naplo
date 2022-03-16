@@ -3,7 +3,7 @@ description: "Nem hivatalos e-napló alkalmazás az e-Kréta rendszerhez"
 homepage: https://filcnaplo.hu
 publish_to: "none"
 
-version: 3.3.0-beta.1+150
+version: 3.3.0-beta.3+157
 
 environment:
   sdk: ">=2.16.0-80.1.beta <3.0.0"
@@ -38,6 +38,8 @@ dependencies:
   flutter_displaymode: ^0.3.2
   quick_actions: ^0.6.0
   implicitly_animated_reorderable_list: ^0.4.2
+  dynamic_color: ^0.1.0
+  material_color_utilities: ^0.1.3
 
 dev_dependencies:
   flutter_test:
