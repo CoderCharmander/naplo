@@ -48,6 +48,7 @@ class SettingsProvider extends ChangeNotifier {
   String _xFilcId;
   bool _graphClassAvg;
   bool _goodStudent;
+  bool _presentationMode;
 
   SettingsProvider({
     required String language,
@@ -70,6 +71,7 @@ class SettingsProvider extends ChangeNotifier {
     required String xFilcId,
     required bool graphClassAvg,
     required bool goodStudent,
+    required bool presentationMode,
   })  : _language = language,
         _startPage = startPage,
         _rounding = rounding,
@@ -89,7 +91,8 @@ class SettingsProvider extends ChangeNotifier {
         _config = config,
         _xFilcId = xFilcId,
         _graphClassAvg = graphClassAvg,
-        _goodStudent = goodStudent;
+        _goodStudent = goodStudent,
+        _presentationMode = presentationMode;
 
   factory SettingsProvider.fromMap(Map map) {
     return SettingsProvider(
@@ -119,6 +122,7 @@ class SettingsProvider extends ChangeNotifier {
       xFilcId: map["x_filc_id"],
       graphClassAvg: map["graph_class_avg"] == 1,
       goodStudent: false,
+      presentationMode: map["presentation_mode"] == 1,
     );
   }
 
@@ -147,6 +151,7 @@ class SettingsProvider extends ChangeNotifier {
       "config": jsonEncode(config.json),
       "x_filc_id": _xFilcId,
       "graph_class_avg": _graphClassAvg ? 1 : 0,
+      "presentation_mode": _presentationMode ? 1 : 0,
     };
   }
 
@@ -178,6 +183,7 @@ class SettingsProvider extends ChangeNotifier {
       xFilcId: const Uuid().v4(),
       graphClassAvg: false,
       goodStudent: false,
+      presentationMode: false,
     );
   }
 
@@ -202,6 +208,7 @@ class SettingsProvider extends ChangeNotifier {
   String get xFilcId => _xFilcId;
   bool get graphClassAvg => _graphClassAvg;
   bool get goodStudent => _goodStudent;
+  bool get presentationMode => _presentationMode;
 
   Future<void> update(
     BuildContext context, {
@@ -226,6 +233,7 @@ class SettingsProvider extends ChangeNotifier {
     String? xFilcId,
     bool? graphClassAvg,
     bool? goodStudent,
+    bool? presentationMode,
   }) async {
     if (language != null && language != _language) _language = language;
     if (startPage != null && startPage != _startPage) _startPage = startPage;
@@ -249,6 +257,7 @@ class SettingsProvider extends ChangeNotifier {
     if (xFilcId != null && xFilcId != _xFilcId) _xFilcId = xFilcId;
     if (graphClassAvg != null && graphClassAvg != _graphClassAvg) _graphClassAvg = graphClassAvg;
     if (goodStudent != null) _goodStudent = goodStudent;
+    if (presentationMode != null && presentationMode != _presentationMode) _presentationMode = presentationMode;
 
     database ??= Provider.of<DatabaseProvider>(context, listen: false);
     await database.store.storeSettings(this);
