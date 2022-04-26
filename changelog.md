@@ -1,3 +1,6 @@
+- Újra dizájnolt jegy, stb. nézet
+- Óra végén a hátralévő idő másodperc pontos kijelzése
+- Vissza gombra főoldalra ugrás
 - Eddigi hiányzott órák százalékos kijelzése
 - Hiányzások tantárgy szerinti rendezése
 - Lapozás legyintéssel a tabok között
