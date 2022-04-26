@@ -8,7 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 enum Pages { home, grades, timetable, messages, absences }
+
 enum UpdateChannel { stable, beta, dev }
+
 enum VibrationStrength { off, light, medium, strong }
 
 class SettingsProvider extends ChangeNotifier {
@@ -49,6 +51,8 @@ class SettingsProvider extends ChangeNotifier {
   bool _graphClassAvg;
   bool _goodStudent;
   bool _presentationMode;
+  bool _bellDelayEnabled;
+  int _bellDelay;
 
   SettingsProvider({
     required String language,
@@ -72,6 +76,8 @@ class SettingsProvider extends ChangeNotifier {
     required bool graphClassAvg,
     required bool goodStudent,
     required bool presentationMode,
+    required bool bellDelayEnabled,
+    required int bellDelay,
   })  : _language = language,
         _startPage = startPage,
         _rounding = rounding,
@@ -92,7 +98,9 @@ class SettingsProvider extends ChangeNotifier {
         _xFilcId = xFilcId,
         _graphClassAvg = graphClassAvg,
         _goodStudent = goodStudent,
-        _presentationMode = presentationMode;
+        _presentationMode = presentationMode,
+        _bellDelayEnabled = bellDelayEnabled,
+        _bellDelay = bellDelay;
 
   factory SettingsProvider.fromMap(Map map) {
     return SettingsProvider(
@@ -123,6 +131,8 @@ class SettingsProvider extends ChangeNotifier {
       graphClassAvg: map["graph_class_avg"] == 1,
       goodStudent: false,
       presentationMode: map["presentation_mode"] == 1,
+      bellDelayEnabled: map["bell_delay_enabled"] == 1,
+      bellDelay: map["bell_delay"],
     );
   }
 
@@ -152,6 +162,8 @@ class SettingsProvider extends ChangeNotifier {
       "x_filc_id": _xFilcId,
       "graph_class_avg": _graphClassAvg ? 1 : 0,
       "presentation_mode": _presentationMode ? 1 : 0,
+      "bell_delay_enabled": _bellDelayEnabled ? 1 : 0,
+      "bell_delay": _bellDelay,
     };
   }
 
@@ -184,6 +196,8 @@ class SettingsProvider extends ChangeNotifier {
       graphClassAvg: false,
       goodStudent: false,
       presentationMode: false,
+      bellDelayEnabled: false,
+      bellDelay: 0,
     );
   }
 
@@ -209,6 +223,8 @@ class SettingsProvider extends ChangeNotifier {
   bool get graphClassAvg => _graphClassAvg;
   bool get goodStudent => _goodStudent;
   bool get presentationMode => _presentationMode;
+  bool get bellDelayEnabled => _bellDelayEnabled;
+  int get bellDelay => _bellDelay;
 
   Future<void> update(
     BuildContext context, {
@@ -234,6 +250,8 @@ class SettingsProvider extends ChangeNotifier {
     bool? graphClassAvg,
     bool? goodStudent,
     bool? presentationMode,
+    bool? bellDelayEnabled,
+    int? bellDelay,
   }) async {
     if (language != null && language != _language) _language = language;
     if (startPage != null && startPage != _startPage) _startPage = startPage;
@@ -258,6 +276,8 @@ class SettingsProvider extends ChangeNotifier {
     if (graphClassAvg != null && graphClassAvg != _graphClassAvg) _graphClassAvg = graphClassAvg;
     if (goodStudent != null) _goodStudent = goodStudent;
     if (presentationMode != null && presentationMode != _presentationMode) _presentationMode = presentationMode;
+    if (bellDelay != null && bellDelay != _bellDelay) _bellDelay = bellDelay;
+    if (bellDelayEnabled != null && bellDelayEnabled != _bellDelayEnabled) _bellDelayEnabled = bellDelayEnabled;
 
     database ??= Provider.of<DatabaseProvider>(context, listen: false);
     await database.store.storeSettings(this);

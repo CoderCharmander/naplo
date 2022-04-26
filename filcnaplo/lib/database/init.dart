@@ -48,7 +48,7 @@ Future<DatabaseStruct> createSettingsTable(Database db) async {
     "grade_color1": int, "grade_color2": int, "grade_color3": int, "grade_color4": int, "grade_color5": int, // grade colors
     "vibration_strength": int, "ab_weeks": int, "swap_ab_weeks": int,
     "notifications": int, "notifications_bitfield": int, "notification_poll_interval": int, // notifications
-    "x_filc_id": String, "graph_class_avg": int, "presentation_mode": int,
+    "x_filc_id": String, "graph_class_avg": int, "presentation_mode": int, "bell_delay": int, "bell_delay_enabled": int,
   });
 
   // Create table Settings
