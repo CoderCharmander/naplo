@@ -53,7 +53,7 @@ class App extends StatelessWidget {
     // Set high refresh mode #28
     if (Platform.isAndroid) FlutterDisplayMode.setHighRefreshRate();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       FilcAPI.getConfig(settings).then((Config? config) {
         if (config != null) settings.update(context, database: database, config: config);
       });

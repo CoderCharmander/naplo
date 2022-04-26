@@ -50,18 +50,16 @@ class AppTheme {
       indicatorColor: accent,
       iconTheme: IconThemeData(color: lightColors.text.withOpacity(.75)),
       navigationBarTheme: NavigationBarThemeData(
-        indicatorColor: accent.withOpacity(accentColor == AccentColor.adaptive ? 1.0 : 0.8),
-        iconTheme: MaterialStateProperty.resolveWith(((states) {
-          if (states.contains(MaterialState.selected)) {
-            return IconThemeData(color: lightColors.background);
-          } else {
-            return IconThemeData(color: lightColors.text);
-          }
-        })),
+        indicatorColor: accent.withOpacity(accentColor == AccentColor.adaptive ? 0.4 : 0.8),
+        iconTheme: MaterialStateProperty.all(IconThemeData(color: lightColors.text)),
         backgroundColor: _paletteHighlightLight(palette) ?? lightColors.highlight,
-        labelTextStyle: MaterialStateProperty.all(const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500)),
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        // height: 64.0,
+        labelTextStyle: MaterialStateProperty.all(TextStyle(
+          fontSize: 13.0,
+          fontWeight: FontWeight.w500,
+          color: lightColors.text.withOpacity(0.8),
+        )),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        height: 76.0,
       ),
     );
   }
@@ -99,18 +97,16 @@ class AppTheme {
       indicatorColor: accent,
       iconTheme: IconThemeData(color: darkColors.text.withOpacity(.75)),
       navigationBarTheme: NavigationBarThemeData(
-        indicatorColor: accent.withOpacity(accentColor == AccentColor.adaptive ? 1.0 : 0.8),
-        iconTheme: MaterialStateProperty.resolveWith(((states) {
-          if (states.contains(MaterialState.selected)) {
-            return IconThemeData(color: darkColors.background);
-          } else {
-            return IconThemeData(color: darkColors.text);
-          }
-        })),
+        indicatorColor: accent.withOpacity(accentColor == AccentColor.adaptive ? 0.4 : 0.8),
+        iconTheme: MaterialStateProperty.all(IconThemeData(color: darkColors.text)),
         backgroundColor: _paletteHighlightDark(palette) ?? darkColors.highlight,
-        labelTextStyle: MaterialStateProperty.all(const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500)),
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        // height: 64.0,
+        labelTextStyle: MaterialStateProperty.all(TextStyle(
+          fontSize: 13.0,
+          fontWeight: FontWeight.w500,
+          color: darkColors.text.withOpacity(0.8),
+        )),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        height: 76.0,
       ),
     );
   }
