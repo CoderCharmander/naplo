@@ -1,4 +1,5 @@
 - Újra dizájnolt jegy, stb. nézet
+- Csengő késésének beállítása
 - Óra végén a hátralévő idő másodperc pontos kijelzése
 - Vissza gombra főoldalra ugrás
 - Eddigi hiányzott órák százalékos kijelzése
