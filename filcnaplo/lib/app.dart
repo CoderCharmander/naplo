@@ -99,7 +99,10 @@ class App extends StatelessWidget {
 
                     return MediaQuery(
                       data: MediaQuery.of(context).copyWith(textScaleFactor: textScaleFactor),
-                      child: child ?? Container(),
+                      child: SafeArea(
+                        top: false,
+                        child: child ?? Container(),
+                      ),
                     );
                   },
                   title: "Filc Napló",
