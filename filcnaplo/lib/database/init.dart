@@ -49,6 +49,7 @@ Future<DatabaseStruct> createSettingsTable(Database db) async {
     "vibration_strength": int, "ab_weeks": int, "swap_ab_weeks": int,
     "notifications": int, "notifications_bitfield": int, "notification_poll_interval": int, // notifications
     "x_filc_id": String, "graph_class_avg": int, "presentation_mode": int, "bell_delay": int, "bell_delay_enabled": int,
+    "subject_lesson_count": String,
   });
 
   // Create table Settings

@@ -61,6 +61,10 @@ class AppTheme {
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         height: 76.0,
       ),
+      sliderTheme: SliderThemeData(
+        inactiveTrackColor: accent.withOpacity(.3),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: accent),
     );
   }
 
@@ -108,6 +112,10 @@ class AppTheme {
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         height: 76.0,
       ),
+      sliderTheme: SliderThemeData(
+        inactiveTrackColor: accent.withOpacity(.3),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: accent),
     );
   }
 }

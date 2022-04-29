@@ -20,15 +20,15 @@ class ReverseSearch {
     lessons = timetableProvider.lessons;
 
     // Find absence lesson in timetable
-    Lesson _lesson = lessons.firstWhere(
+    Lesson lesson = lessons.firstWhere(
       (l) => _sameDate(l.date, absence.date) && l.subject.id == absence.subject.id && l.lessonIndex == absence.lessonIndex.toString(),
       orElse: () => Lesson.fromJson({'isEmpty': true}),
     );
 
-    if (_lesson.isEmpty) {
+    if (lesson.isEmpty) {
       return null;
     } else {
-      return _lesson;
+      return lesson;
     }
   }
 
