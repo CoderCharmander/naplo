@@ -18,8 +18,8 @@ const settingsDB = DatabaseStruct("settings", {
 const usersDB = DatabaseStruct(
     "users", {"id": String, "name": String, "username": String, "password": String, "institute_code": String, "student": String, "role": int});
 const userDataDB = DatabaseStruct("user_data", {
-  "id": String, "grades": String, "timetable": String, "exams": String, /*"homework": String,*/ "messages": String, "notes": String,
-  "events": String, "absences": String,
+  "id": String, "grades": String, "timetable": String, "exams": String, "homework": String, "messages": String, "notes": String,
+  "events": String, "absences": String, "group_averages": String,
   "subject_lesson_count": String, // non kreta data
 });
 
@@ -58,6 +58,7 @@ Future<Database> initDB() async {
     );
     await migrateDB(db, struct: userDataDB, defaultValues: {
       "grades": "[]", "timetable": "[]", "exams": "[]", "homework": "[]", "messages": "[]", "notes": "[]", "events": "[]", "absences": "[]",
+      "group_averages": "[]",
       "subject_lesson_count": "{}", // non kreta data
     });
   } catch (error) {

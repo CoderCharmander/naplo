@@ -14,6 +14,7 @@ import 'package:filcnaplo_kreta_api/models/message.dart';
 import 'package:filcnaplo_kreta_api/models/note.dart';
 import 'package:filcnaplo_kreta_api/models/event.dart';
 import 'package:filcnaplo_kreta_api/models/absence.dart';
+import 'package:filcnaplo_kreta_api/models/group_average.dart';
 
 class DatabaseQuery {
   DatabaseQuery({required this.db});
@@ -111,6 +112,15 @@ class UserDatabaseQuery {
     if (absencesJson == null) return [];
     List<Absence> absences = (jsonDecode(absencesJson) as List).map((e) => Absence.fromJson(e)).toList();
     return absences;
+  }
+
+  Future<List<GroupAverage>> getGroupAverages({required String userId}) async {
+    List<Map> userData = await db.query("user_data", where: "id = ?", whereArgs: [userId]);
+    if (userData.isEmpty) return [];
+    String? groupAveragesJson = userData.elementAt(0)["group_averages"] as String?;
+    if (groupAveragesJson == null) return [];
+    List<GroupAverage> groupAverages = (jsonDecode(groupAveragesJson) as List).map((e) => GroupAverage.fromJson(e)).toList();
+    return groupAverages;
   }
 
   Future<SubjectLessonCount> getSubjectLessonCount({required String userId}) async {
