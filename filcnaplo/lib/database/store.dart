@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:filcnaplo/models/subject_lesson_count.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 
 // Models
@@ -81,5 +82,10 @@ class UserDatabaseStore {
   Future storeAbsences(List<Absence> absences, {required String userId}) async {
     String absencesJson = jsonEncode(absences.map((e) => e.json).toList());
     await db.update("user_data", {"absences": absencesJson}, where: "id = ?", whereArgs: [userId]);
+  }
+
+  Future<void> storeSubjectLessonCount(SubjectLessonCount lessonCount, {required String userId}) async {
+    String lessonCountJson = jsonEncode(lessonCount.toMap());
+    await db.update("user_data", {"subject_lesson_count": lessonCountJson}, where: "id = ?", whereArgs: [userId]);
   }
 }

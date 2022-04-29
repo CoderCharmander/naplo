@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:filcnaplo/api/providers/database_provider.dart';
 import 'package:filcnaplo/models/config.dart';
-import 'package:filcnaplo/models/subject_lesson_count.dart';
 import 'package:filcnaplo/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +54,6 @@ class SettingsProvider extends ChangeNotifier {
   bool _presentationMode;
   bool _bellDelayEnabled;
   int _bellDelay;
-  SubjectLessonCount _subjectLessonCount;
 
   SettingsProvider({
     required String language,
@@ -81,7 +79,6 @@ class SettingsProvider extends ChangeNotifier {
     required bool presentationMode,
     required bool bellDelayEnabled,
     required int bellDelay,
-    required SubjectLessonCount subjectLessonCount,
   })  : _language = language,
         _startPage = startPage,
         _rounding = rounding,
@@ -104,16 +101,13 @@ class SettingsProvider extends ChangeNotifier {
         _goodStudent = goodStudent,
         _presentationMode = presentationMode,
         _bellDelayEnabled = bellDelayEnabled,
-        _bellDelay = bellDelay,
-        _subjectLessonCount = subjectLessonCount;
+        _bellDelay = bellDelay;
 
   factory SettingsProvider.fromMap(Map map) {
     Map<String, Object?>? configMap;
-    Map<String, Object?>? subjectLessonCountMap;
 
     try {
       configMap = jsonDecode(map["config"] ?? "{}");
-      subjectLessonCountMap = jsonDecode(map["subject_lesson_count"] ?? "{}");
     } catch (e) {
       log("[ERROR] SettingsProvider.fromMap: $e");
     }
@@ -148,7 +142,6 @@ class SettingsProvider extends ChangeNotifier {
       presentationMode: map["presentation_mode"] == 1,
       bellDelayEnabled: map["bell_delay_enabled"] == 1,
       bellDelay: map["bell_delay"],
-      subjectLessonCount: SubjectLessonCount.fromMap(subjectLessonCountMap ?? {}),
     );
   }
 
@@ -180,7 +173,6 @@ class SettingsProvider extends ChangeNotifier {
       "presentation_mode": _presentationMode ? 1 : 0,
       "bell_delay_enabled": _bellDelayEnabled ? 1 : 0,
       "bell_delay": _bellDelay,
-      "subject_lesson_count": jsonEncode(_subjectLessonCount.toMap()),
     };
   }
 
@@ -215,7 +207,6 @@ class SettingsProvider extends ChangeNotifier {
       presentationMode: false,
       bellDelayEnabled: false,
       bellDelay: 0,
-      subjectLessonCount: SubjectLessonCount.fromMap({}),
     );
   }
 
@@ -243,7 +234,6 @@ class SettingsProvider extends ChangeNotifier {
   bool get presentationMode => _presentationMode;
   bool get bellDelayEnabled => _bellDelayEnabled;
   int get bellDelay => _bellDelay;
-  SubjectLessonCount get subjectLessonCount => _subjectLessonCount;
 
   Future<void> update(
     BuildContext context, {
@@ -272,7 +262,6 @@ class SettingsProvider extends ChangeNotifier {
     bool? presentationMode,
     bool? bellDelayEnabled,
     int? bellDelay,
-    SubjectLessonCount? subjectLessonCount,
   }) async {
     if (language != null && language != _language) _language = language;
     if (startPage != null && startPage != _startPage) _startPage = startPage;
@@ -299,7 +288,6 @@ class SettingsProvider extends ChangeNotifier {
     if (presentationMode != null && presentationMode != _presentationMode) _presentationMode = presentationMode;
     if (bellDelay != null && bellDelay != _bellDelay) _bellDelay = bellDelay;
     if (bellDelayEnabled != null && bellDelayEnabled != _bellDelayEnabled) _bellDelayEnabled = bellDelayEnabled;
-    if (subjectLessonCount != null && subjectLessonCount != _subjectLessonCount) _subjectLessonCount = subjectLessonCount;
 
     database ??= Provider.of<DatabaseProvider>(context, listen: false);
     if (store) await database.store.storeSettings(this);
