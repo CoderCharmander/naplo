@@ -20,7 +20,7 @@ const usersDB = DatabaseStruct(
 const userDataDB = DatabaseStruct("user_data", {
   "id": String, "grades": String, "timetable": String, "exams": String, "homework": String, "messages": String, "notes": String,
   "events": String, "absences": String, "group_averages": String,
-  "subject_lesson_count": String, // non kreta data
+  // "subject_lesson_count": String, // non kreta data
 });
 
 Future<void> createTable(Database db, DatabaseStruct struct) => db.execute("CREATE TABLE IF NOT EXISTS ${struct.table} ($struct)");
@@ -59,7 +59,7 @@ Future<Database> initDB() async {
     await migrateDB(db, struct: userDataDB, defaultValues: {
       "grades": "[]", "timetable": "[]", "exams": "[]", "homework": "[]", "messages": "[]", "notes": "[]", "events": "[]", "absences": "[]",
       "group_averages": "[]",
-      "subject_lesson_count": "{}", // non kreta data
+      // "subject_lesson_count": "{}", // non kreta data
     });
   } catch (error) {
     print("ERROR: migrateDB: $error");
