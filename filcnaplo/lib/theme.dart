@@ -65,6 +65,7 @@ class AppTheme {
         inactiveTrackColor: accent.withOpacity(.3),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(color: accent),
+      expansionTileTheme: ExpansionTileThemeData(iconColor: accent),
     );
   }
 
@@ -116,6 +117,7 @@ class AppTheme {
         inactiveTrackColor: accent.withOpacity(.3),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(color: accent),
+      expansionTileTheme: ExpansionTileThemeData(iconColor: accent),
     );
   }
 }
